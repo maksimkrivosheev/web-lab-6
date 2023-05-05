@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+    <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Кривошеев Максим Сергеевич, Гавра Владислав Артемович, Лабораторная 6</title>
+            <link rel="stylesheet" href="main.css">
+            <style>
+                .game {
+                padding: 19px;
+                margin: 10px auto;
+                border: 1px solid;
+                border-radius: 40px;
+                width: 500px;
+                height: 150px;
+                margin-left: 0px;
+                background-color: blue;
+                color: gold;
+                text-align: center;
+                }
+
+                .PRAVILA {
+                padding: 19px;
+                margin: 10px auto;
+                border: 1px solid;
+                border-radius: 40px;
+                background-color: rgb(76, 92, 92);
+                text-align: center;
+                }
+
+                </style>
+            <script>
+                let number;
+                let count = 0;
+                function startGame() {
+                number = Math.floor( Math.random() * 100 ) + 1;
+                let screens = document.getElementsByClassName('game');
+                screens[0].style.display = 'none';
+                screens[1].style.display = 'block';
+                }
+
+                function guess() {
+                    count++;
+                    let input = document.getElementById('user-number')
+                    let usernumber = parseInt(input.value);
+                    let message = document.getElementById('result')
+                    if(usernumber > number) {
+                        message.innerHTML = 'Вы ввели слишком большое число'
+                    }
+                    if(usernumber < number) {
+                        message.innerHTML = 'Вы ввели слишком маленькое число'
+                    }
+                    else {
+                        let screens = document.getElementsByClassName('game');
+                        screens[1].style.display = 'none';
+                        screens[2].style.display = 'block';
+                        document.getElementById('number').innerHTML = number;
+                        document.getElementById('tru-count').innerHTML = count;
+                    }
+                }
+
+                function again(params) {
+                
+                }
+
+                function PRAV() {
+                let screens = document.getElementsByClassName('pravila1')
+                screens[0].style.display = 'pravila1';
+                screens[1].style.display = 'pravila2';
+                screens[0].style.display = 'pravila1';
+                }
+
+
+                function PRAV2() {
+                let screens = document.getElementsByClassName('pravila2')
+                }
+
+            </script>
+        </head>
+            <body>
+        <header>
+            НГТУ, лабораторная работа 6
+        </header>
+
+        <main>
+            <div class="game" >
+                <button onclick="startGame()">
+                Сыграть в игру
+            </button>
+            </div>
+
+        <div class="game" style="display: none;">
+            <h1>Угадайте число</h1>
+                <div>
+                Задумано число от 1 до 100. Угадайте какое?
+
+                <input tupe="number" value="" min="1" max="100" id="user-number">
+
+                <button onclick="guess()">Угадать</button>
+                <div id="result"></div>
+            </div>
+        </div>
+
+        <div class="game" style="display: none;">
+            <h1>Поздравляем, вы выиграли!</h1>
+            <div>
+                Задуманное число: <span id="number"></span>
+            </div>
+            <div>
+                Количество попыток: <span id="try-count"></span>
+            </div>
+            <div>
+            <button onclick="again()">Сыграть ещё раз</button>
+            </div>
+        </div>
+
+        <div class="PRAVILA">
+            <button onclick="PRAV()">
+            Правила игры
+            </button>
+            <div id="pravila1"></div>
+        </div>
+
+        <div class="PRAVILA" style="display: none;">
+        <div id="pravila2">
+            #А Cначала нажмите на кнопку "Cыграть в игру"
+            #В потом1
+            #C потом2
+            #D потом3
+            #E если захотите сыграть ещё раз то ...
+        </div>
+        <button onclick="PRAV2()">Скрыть правила</button>
+
+        </div>
+        </main>
+
+        <footer>
+        &copy; Кривошеев Максим Сергеевич, Гавра Владислав Артемович, ФБИ-11, 2 курс, 2023
+        </footer>
+
+    </body>
+</html>
